@@ -1,2 +1,6 @@
-res://Levels/test_level.tscn
-res://Character/player.tscn
+res://Scenes/Player.tscn
+res://Scenes/sandbox.tscn
+res://Scripts/CharacterStateMachine.gd
+res://Scripts/State.gd
+res://Scripts/GroundState.gd
+res://Scripts/AirState.gd
