@@ -1,6 +1,3 @@
 res://Scenes/Player.tscn
-res://Scenes/sandbox.tscn
-res://Scripts/CharacterStateMachine.gd
-res://Scripts/State.gd
+res://Scenes/Attack1.gd
 res://Scripts/GroundState.gd
-res://Scripts/AirState.gd

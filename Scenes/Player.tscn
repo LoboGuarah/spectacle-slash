@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://6oj3kf8015xs"]
+[gd_scene load_steps=39 format=3 uid="uid://6oj3kf8015xs"]
 
 [ext_resource type="Texture2D" uid="uid://bl4e3rsatuuh7" path="res://Assets/Visuals/Character_one/_Fall.png" id="1_7fxx6"]
 [ext_resource type="Texture2D" uid="uid://bkb83rfq4e22q" path="res://Assets/Visuals/Character_one/_Run.png" id="1_21ww5"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/GroundState.gd" id="9_2vbld"]
 [ext_resource type="Script" path="res://Scripts/AirState.gd" id="10_03bd4"]
 [ext_resource type="Script" path="res://Scripts/LandingState.gd" id="11_fa1d6"]
+[ext_resource type="Script" path="res://Scenes/Attack1.gd" id="12_ok2at"]
 [ext_resource type="Script" path="res://Scripts/StateDebugLabel.gd" id="12_wrcb6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_buqt0"]
@@ -305,6 +306,9 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_48t3r")
 blend_point_2/pos = -1.0
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sajlt"]
+animation = &"attack1"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_boa70"]
 animation = &"fall"
 
@@ -330,18 +334,24 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ai678"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_05ix0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xf3d3"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gq8hb"]
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_avn1g")
 states/Move/position = Vector2(473, 100)
 states/Start/position = Vector2(192, 100)
+states/attack1/node = SubResource("AnimationNodeAnimation_sajlt")
+states/attack1/position = Vector2(473, 193)
 states/fall/node = SubResource("AnimationNodeAnimation_boa70")
 states/fall/position = Vector2(632, 16)
 states/jump_fib/node = SubResource("AnimationNodeAnimation_jleul")
 states/jump_fib/position = Vector2(473, -34)
 states/jump_start/node = SubResource("AnimationNodeAnimation_aumwk")
 states/jump_start/position = Vector2(303, 16)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_6jhjy"), "Move", "jump_start", SubResource("AnimationNodeStateMachineTransition_16u2m"), "jump_start", "jump_fib", SubResource("AnimationNodeStateMachineTransition_6oc4h"), "jump_fib", "fall", SubResource("AnimationNodeStateMachineTransition_0yv4o"), "fall", "Move", SubResource("AnimationNodeStateMachineTransition_ai678")]
-graph_offset = Vector2(-177, -99)
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_6jhjy"), "Move", "jump_start", SubResource("AnimationNodeStateMachineTransition_16u2m"), "jump_start", "jump_fib", SubResource("AnimationNodeStateMachineTransition_6oc4h"), "jump_fib", "fall", SubResource("AnimationNodeStateMachineTransition_0yv4o"), "fall", "Move", SubResource("AnimationNodeStateMachineTransition_ai678"), "Move", "attack1", SubResource("AnimationNodeStateMachineTransition_05ix0"), "attack1", "Move", SubResource("AnimationNodeStateMachineTransition_xf3d3")]
+graph_offset = Vector2(-257, -57)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(6, -40)
@@ -362,6 +372,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_ujmk4")
 }
@@ -391,6 +402,7 @@ script = ExtResource("11_fa1d6")
 can_move = false
 
 [node name="Attack_1" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("12_ok2at")
 
 [node name="Falling" type="Node" parent="CharacterStateMachine"]
 

@@ -12,12 +12,18 @@ func state_process(delta):
 		next_state = air_state
 		playback.travel(fall_animation)
 		
+	
 
 func state_input(event : InputEvent):
 	if(event.is_action_pressed("jump")):
 		jump()
 		
+	if (event.is_action_pressed("attack")):
+		#attack()
+		pass
+		
 func jump():
 	character.velocity.y = character.jump_velocity
 	next_state = air_state
 	playback.travel(jump_animation)
+
